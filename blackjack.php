@@ -5,19 +5,27 @@ ini_set('display_errors', "1");
 ini_set('display_startup_errors', "1");
 error_reporting(E_ALL);
 
+session_start();
+
 class Blackjack {
 
     // Properties
-    public $score = 0;
+    public $score;
 
     // Methods
-    function hit() {
+    public function hit() {
+        $this->score = $_SESSION["playerScore"];
+        $_SESSION["playerScore"] = $this->score += rand(1,11);
+        if ($_SESSION["playerScore"] > 21) {
+            echo "YOU HAVE PERISHED";
+            $_SESSION["playerScore"] = 0;
+        }
+        return $_SESSION["playerScore"];
+    }
+    public function stand() {
 
     }
-    function stand() {
-
-    }
-    function surrender() {
+    public function surrender() {
 
     }
 }
