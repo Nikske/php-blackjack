@@ -13,7 +13,7 @@ require "game.php";
         <h1>Blackjack but no hookers</h1>
         <section class="row">
             <article class="col">
-                <strong><p id="playerScore"><?php echo $player->score; ?></p></strong>
+                <strong><p id="playerScore"><?php echo $playerScoreData; ?></p></strong>
                 <span>Your score</span>
             </article>
             <article class="col">

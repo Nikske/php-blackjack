@@ -6,11 +6,17 @@ ini_set('display_startup_errors', "1");
 error_reporting(E_ALL);
 
 require "blackjack.php";
-$player = new Blackjack();
+session_start();
+
+if (isset($_SESSION["player"])) {
+    $player = new Blackjack($_SESSION["player"]);
+}
 
 if (isset($_POST["hit"])) {
-    $_SESSION["playerScore"] = $player->hit();
+    $player->hit();
 }
+$playerScoreData = $_SESSION["playerScore"];
+
 whatIsHappening();
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
