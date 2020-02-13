@@ -15,7 +15,8 @@ class Blackjack {
     // Methods
     public function hit() {
         $this->score = $_SESSION["playerScore"];
-        $_SESSION["playerScore"] = $this->score += rand(1,11);
+        $_SESSION["playerScore"] = $this->score + rand(1,11);
+        $this->score = $_SESSION["playerScore"];
         if ($_SESSION["playerScore"] > 21) {
             echo "YOU HAVE PERISHED";
             $_SESSION["playerScore"] = 0;
