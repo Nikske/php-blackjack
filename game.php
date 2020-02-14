@@ -9,13 +9,10 @@ require "blackjack.php";
 session_start();
 
 // VARIABLES
-$playerScore = 0;
-$dealerScore = 0;
-$disable = "";
-$newGame= "";
-$winOrLoss = "";
-$redDead ="";
-$redDeadDealer = "";
+$playerScore = 0; $dealerScore = 0;
+$disable = ""; $newGame= ""; $winOrLoss = ""; $redDead =""; $redDeadDealer = "";
+$victoryButton = "<button type='submit' class='btn btn-success mb-3' name='new' value='new'>NEW GAME</button>";
+$defeatButton = "<button type='submit' class='btn btn-danger mb-3' name='new' value='new'>NEW GAME</button>";
 
 // SESSIONS
 // Player
@@ -53,37 +50,31 @@ if (isset($_POST["hit"])) {
         $winOrLoss = "Remind yourself that overconfidence is a slow and insidious killer.";
         $disable = "disabled";
         $redDead = "class='text-danger'";
-        $newGame = "<button type='submit' class='btn btn-danger mb-3' name='new' value='new'>NEW GAME</button>";
+        $newGame = $defeatButton;
         session_destroy();
     }
 }
 // Stand
 if (isset($_POST["stand"])) {
-    // Disable all buttons, the player is done playing, it's the dealer's turn
     $disable= "disabled";
-    // Give the dealer two values off the bat
     $dealer->firstScore();
-    // While the dealer's score is below 15, he keeps hitting himself
-    do {
-        $dealer->hit();
-        $_SESSION["dealer"] = $dealer->getScore();
-        $dealerScore = $_SESSION["dealer"];
-    } while ($dealer->getScore() < 15);
-    // If the dealer draws over 21, he croaks
+    $dealer->stand();
+    $_SESSION["dealer"] = $dealer->getScore();
+    $dealerScore = $_SESSION["dealer"];
+
     if ($dealer->getScore() > 21) {
         $winOrLoss = "The dealer lies dead, face down in the mud.";
         $redDeadDealer = "class='text-danger'";
-        $newGame = "<button type='submit' class='btn btn-success mb-3' name='new' value='new'>NEW GAME</button>";
-    } // If he's not dead yet, check if the dealer's score is the same or higher as the player. Then decide whether the player got a W
-    elseif ($dealer->getScore() >= $player->getScore()) {
+        $newGame = $victoryButton;
+    } elseif ($dealer->getScore() >= $player->getScore()) {
         $winOrLoss = "Beaten like an ordinary knave.";
         $redDead = "class='text-danger'";
-        $newGame = "<button type='submit' class='btn btn-danger mb-3' name='new' value='new'>NEW GAME</button>";
+        $newGame = $defeatButton;
         session_destroy();
     } else {
         $winOrLoss = "A glorious victory !";
         $redDeadDealer = "class='text-danger'";
-        $newGame = "<button type='submit' class='btn btn-success mb-3' name='new' value='new'>NEW GAME</button>";
+        $newGame = $victoryButton;
     }
 }
 // Surrender
@@ -91,14 +82,12 @@ if (isset($_POST["surrender"])) {
     $disable= "disabled";
     $redDead = "class='text-danger'";
     $winOrLoss = "The coward's way out.";
-    $newGame = "<button type='submit' class='btn btn-danger mb-3' name='new' value='new'>NEW GAME</button>";
-
+    $newGame = $defeatButton;
     $dealer->firstScore();
-    do {
-        $dealer->hit();
-        $_SESSION["dealer"] = $dealer->getScore();
-        $dealerScore = $_SESSION["dealer"];
-    } while ($dealer->getScore() < 15);
+    $dealer->stand();
+
+    $_SESSION["dealer"] = $dealer->getScore();
+    $dealerScore = $_SESSION["dealer"];
 }
 // New game
  if (isset($_POST["new"])) {
@@ -106,7 +95,6 @@ if (isset($_POST["surrender"])) {
      header('refresh:0');
 
 }
-
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);

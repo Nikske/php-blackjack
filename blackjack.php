@@ -25,7 +25,9 @@ class Blackjack {
         $this->score += rand(1,11);
     }
     public function stand() {
-
+        do {
+            $this->hit();
+        } while ($this->getScore() < 15);
     }
     public function surrender() {
 
