@@ -9,12 +9,14 @@ error_reporting(E_ALL);
 class Blackjack {
 
     // Properties
-    public $startScore;
     public $score;
 
     // Methods
     public function __construct(int $score) {
         $this->score = $score;
+    }
+    public function firstScore() {
+        $this->score += rand(2,21);
     }
     public function getScore(): int {
         return $this->score;
