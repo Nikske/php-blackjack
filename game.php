@@ -67,12 +67,12 @@ if (isset($_POST["stand"])) {
         $redDeadDealer = "class='text-danger'";
         $newGame = $victoryButton;
     } elseif ($dealer->getScore() >= $player->getScore()) {
-        $winOrLoss = "The robotic dealer shoots a deadly laser from his ocular sockets";
+        $winOrLoss = "The robotic dealer shoots a deadly laser from his ocular sockets. Melting your skin and turning your bones to ash.";
         $redDead = "class='text-danger'";
         $newGame = $defeatButton;
         session_destroy();
     } else {
-        $winOrLoss = "A glorious victory !";
+        $winOrLoss = "A glorious victory, you earn enough space money for space food.";
         $redDeadDealer = "class='text-danger'";
         $newGame = $victoryButton;
     }
@@ -81,7 +81,7 @@ if (isset($_POST["stand"])) {
 if (isset($_POST["surrender"])) {
     $disable= "disabled";
     $redDead = "class='text-danger'";
-    $winOrLoss = "The coward's way out.";
+    $winOrLoss = "You decide that jumping out the nearest airlock is the best option.";
     $newGame = $defeatButton;
     $dealer->firstScore();
     $dealer->stand();
