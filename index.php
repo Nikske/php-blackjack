@@ -7,10 +7,13 @@ require "game.php";
     <meta charset="UTF-8">
     <title>Blackjack</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800&display=swap" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Blackjack but no hookers</h1>
+        <h1>Blackjack in space</h1>
+        <span id="no">(no hookers)</span>
         <section class="row">
             <article class="col">
                 <strong><h3 id="playerScore" <?php echo $redDead; ?>><?php echo $playerScore; ?></h3></strong>

@@ -1,0 +1,10 @@
+body {
+    background-image: url("../img/darkness.png");
+    color: #e9e9e9;
+}
+h1,h3 {
+    font-family: 'Coda Caption', sans-serif;
+}
+#no {
+    font-size: 0.8em;
+}

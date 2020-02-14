@@ -63,11 +63,11 @@ if (isset($_POST["stand"])) {
     $dealerScore = $_SESSION["dealer"];
 
     if ($dealer->getScore() > 21) {
-        $winOrLoss = "The dealer lies dead, face down in the mud.";
+        $winOrLoss = "DEALERBOT 5000's head starts spinning until it explodes.";
         $redDeadDealer = "class='text-danger'";
         $newGame = $victoryButton;
     } elseif ($dealer->getScore() >= $player->getScore()) {
-        $winOrLoss = "Beaten like an ordinary knave.";
+        $winOrLoss = "The robotic dealer shoots a deadly laser from his ocular sockets";
         $redDead = "class='text-danger'";
         $newGame = $defeatButton;
         session_destroy();
