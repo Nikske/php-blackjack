@@ -17,7 +17,7 @@ require "game.php";
                 <span>Your score</span>
             </article>
             <article class="col">
-                <strong><h3 id="dealerScore"><?php echo $dealerScore; ?></h3></strong>
+                <strong><h3 id="dealerScore" <?php echo $redDeadDealer; ?>><?php echo $dealerScore; ?></h3></strong>
                 <span>Dealer's score</span>
             </article>
         </section>

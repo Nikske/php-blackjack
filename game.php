@@ -15,6 +15,7 @@ $disable = "";
 $newGame= "";
 $dead = "";
 $redDead ="";
+$redDeadDealer = "";
 
 // SESSIONS
 // Player
@@ -39,6 +40,7 @@ if (isset($_SESSION["dealer"])) {
 } else {
     $_SESSION["dealer"] = 0;
     $dealer = new Blackjack($_SESSION["dealer"]);
+    $dealerScore = $_SESSION["dealer"];
 }
 
 // BUTTONS
@@ -65,25 +67,27 @@ if (isset($_POST["stand"])) {
         $dealerScore = $_SESSION["dealer"];
     } while ($dealer->getScore() < 15);
     if ($dealer->getScore() > 21) {
-        $dead = "The dealer lies dead in the mud.";
+        $dead = "The dealer lies dead, face down in the mud.";
+        $redDeadDealer = "class='text-danger'";
         $newGame = "<button type='submit' class='btn btn-success mb-3' name='new' value='new'>NEW GAME</button>";
-    }
-    if ($dealer->getScore() > $player->getScore()) {
+    } elseif ($dealer->getScore() >= $player->getScore()) {
         $dead = "Thou got beaten like an ordinary knave.";
         $redDead = "class='text-danger'";
         $newGame = "<button type='submit' class='btn btn-dark mb-3' name='new' value='new'>NEW GAME</button>";
         session_destroy();
     } else {
         $dead = "A glorious victory !";
+        $redDeadDealer = "class='text-danger'";
         $newGame = "<button type='submit' class='btn btn-success mb-3' name='new' value='new'>NEW GAME</button>";
     }
 }
 
-/* if (isset($_POST["new"])) {
-    $player->firstScore();
-} */
+ if (isset($_POST["new"])) {
+     session_destroy();
+     header('refresh:0');
 
-whatIsHappening();
+}
+ 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
