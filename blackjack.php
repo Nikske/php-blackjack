@@ -29,8 +29,5 @@ class Blackjack {
             $this->hit();
         } while ($this->getScore() < 15);
     }
-    public function surrender() {
-
-    }
 }
 ?>
