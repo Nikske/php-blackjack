@@ -22,7 +22,7 @@ require "game.php";
             </article>
         </section>
         <section class="row mt-3">
-            <strong><p><?php echo $dead; ?></p></strong>
+            <strong><p><?php echo $winOrLoss; ?></p></strong>
             <br/>
         </section>
         <section class="row mt-2">
@@ -31,7 +31,7 @@ require "game.php";
                 <br/>
                 <button type="submit" class="btn btn-primary" name="hit" value="hit" <?php echo $disable; ?>>HIT ME</button>
                 <button type="submit" class="btn btn-primary" name="stand" value="stand" <?php echo $disable; ?>>STAND</button>
-                <button type="submit" class="btn btn-danger" name="go" value="surrender" <?php echo $disable; ?>>SURRENDER</button>
+                <button type="submit" class="btn btn-dark" name="surrender" value="surrender" <?php echo $disable; ?>>SURRENDER</button>
                 <br/>
             </form>
         </section>
