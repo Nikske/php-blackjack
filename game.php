@@ -8,14 +8,33 @@ error_reporting(E_ALL);
 require "blackjack.php";
 session_start();
 
+$playerScore = 0;
+$disable = "";
+$newGame= "";
+
+// If there already is a session, 'load' it into the array.
 if (isset($_SESSION["player"])) {
     $player = new Blackjack($_SESSION["player"]);
+    $playerScore = $_SESSION["player"];
+    // If there isn't, clear it and start anew.
+} else {
+    $_SESSION["player"] = 0;
+    $playerScore = 0;
+    $player = new Blackjack($_SESSION["player"]);
+
 }
 
 if (isset($_POST["hit"])) {
     $player->hit();
+    $_SESSION["player"] = $player->getScore();
+    $playerScore = $_SESSION["player"];
+    if ($player->getScore() > 21) {
+        echo "Thou hast perished";
+        $disable = "disabled";
+        $newGame = "<button type='submit' class='btn btn-dark mt-3' name='new'>NEW GAME</button>";
+        session_destroy();
+    }
 }
-$playerScoreData = $_SESSION["playerScore"];
 
 whatIsHappening();
 function whatIsHappening() {

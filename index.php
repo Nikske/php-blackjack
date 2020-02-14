@@ -13,7 +13,7 @@ require "game.php";
         <h1>Blackjack but no hookers</h1>
         <section class="row">
             <article class="col">
-                <strong><p id="playerScore"><?php echo $playerScoreData; ?></p></strong>
+                <strong><p id="playerScore"><?php echo $playerScore; ?></p></strong>
                 <span>Your score</span>
             </article>
             <article class="col">
@@ -23,9 +23,11 @@ require "game.php";
         </section>
         <section class="row mt-5">
             <form method="post">
-                <button type="submit" class="btn btn-primary" name="hit" value="hit">HIT ME</button>
-                <button type="submit" class="btn btn-warning" name="go" value="stand">STAND</button>
-                <button type="submit" class="btn btn-dark" name="go" value="surrender">SURRENDER</button>
+                <button type="submit" class="btn btn-primary" name="hit" value="hit" <?php echo $disable; ?>>HIT ME</button>
+                <button type="submit" class="btn btn-primary" name="go" value="stand" <?php echo $disable; ?>>STAND</button>
+                <button type="submit" class="btn btn-danger" name="go" value="surrender" <?php echo $disable; ?>>SURRENDER</button>
+                <br/>
+                <?php echo $newGame; ?>
             </form>
         </section>
         <form method="post">
